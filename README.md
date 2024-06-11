@@ -40,69 +40,13 @@ PEERDNS=no
 sudo systemctl restart network
 ```
 
-### Agregar al Dominio
-
-#### Instalar paquetes necesarios:
+#### Cambiar nombre de host
 ```bash
-sudo yum install -y realmd sssd adcli samba-common samba-common-tools oddjob oddjob-mkhomedir krb5-workstation
+sudo nano /etc/hostname
+sudo nano /etc/hosts
+sudo reboot
 ```
 
-#### Descubrir el dominio:
-```bash
-sudo realm discover Blitzcode.company
-```
-
-#### Unirse al dominio:
-```bash
-sudo realm join --user=administrador Blitzcode.company
-```
-
-#### Ajustar permisos del archivo de configuración de sssd:
-```bash
-sudo chmod 600 /etc/sssd/sssd.conf
-```
-
-#### Habilitar y arrancar sssd:
-```bash
-sudo systemctl enable sssd
-sudo systemctl start sssd
-```
-
-#### Habilitar y arrancar oddjobd:
-```bash
-sudo systemctl enable oddjobd
-sudo systemctl start oddjobd
-```
-
-#### Configurar pam_mkhomedir:
-```bash
-sudo nano /etc/pam.d/common-session
-```
-
-Agregar la siguiente línea:
-```ini
-session    required     pam_mkhomedir.so skel=/etc/skel/ umask=0077
-```
-
-#### Reiniciar sssd:
-```bash
-sudo systemctl restart sssd
-```
-
-#### Verificar configuración de dominio:
-```bash
-realm list
-ping Blitzcode.company
-```
-
-#### Acceder a usuarios de AD:
-```bash
-su - dvega@Blitzcode.company
-su - msosa@Blitzcode.company
-su - kvidir@Blitzcode.company
-```
-
-Contraseña de Active Directory: `User123`.
 
 ### Instalación de Docker en CentOS
 
@@ -211,3 +155,68 @@ cd monitoreo
 ```bash
 sudo yum update -y
 ```
+
+### Agregar al Dominio
+
+#### Instalar paquetes necesarios:
+```bash
+sudo yum install -y realmd sssd adcli samba-common samba-common-tools oddjob oddjob-mkhomedir krb5-workstation
+```
+
+#### Descubrir el dominio:
+```bash
+sudo realm discover Blitzcode.company
+```
+
+#### Unirse al dominio:
+```bash
+sudo realm join --user=administrador Blitzcode.company
+```
+
+#### Ajustar permisos del archivo de configuración de sssd:
+```bash
+sudo chmod 600 /etc/sssd/sssd.conf
+```
+
+#### Habilitar y arrancar sssd:
+```bash
+sudo systemctl enable sssd
+sudo systemctl start sssd
+```
+
+#### Habilitar y arrancar oddjobd:
+```bash
+sudo systemctl enable oddjobd
+sudo systemctl start oddjobd
+```
+
+#### Configurar pam_mkhomedir:
+```bash
+sudo nano /etc/pam.d/common-session
+```
+
+Agregar la siguiente línea:
+```ini
+session    required     pam_mkhomedir.so skel=/etc/skel/ umask=0077
+```
+
+#### Reiniciar sssd:
+```bash
+sudo systemctl restart sssd
+```
+
+#### Verificar configuración de dominio:
+```bash
+realm list
+ping Blitzcode.company
+```
+
+#### Acceder a usuarios de AD:
+```bash
+su - dvega@Blitzcode.company
+su - msosa@Blitzcode.company
+su - kvidir@Blitzcode.company
+```
+
+Contraseña de Active Directory: `User123`.
+
