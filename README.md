@@ -1,4 +1,4 @@
-### Configuración de Red y Preparación del Sistema
+# Configuración de Red y Preparación del Sistema
 
 #### Ver configuración de red actual:
 ```bash
@@ -46,9 +46,14 @@ sudo nano /etc/hostname
 sudo nano /etc/hosts
 sudo reboot
 ```
+## Configuración de red y nombre de host con nmtui
+Si prefieres una interfaz de usuario basada en texto para gestionar tus conexiones de red o cambiar el nombre del host, puedes utilizar `nmtui`.
 
-
-### Instalación de Docker en CentOS
+Simplemente ejecuta el siguiente comando en tu terminal:
+```bash
+sudo nmtui
+```
+## Instalación de Docker en CentOS
 
 #### Instalar dependencias:
 ```bash
@@ -76,7 +81,7 @@ sudo systemctl enable docker
 sudo usermod -aG docker $(whoami)
 ```
 
-### Instalación de Docker Compose
+## Instalación de Docker Compose
 
 #### Descargar Docker Compose:
 ```bash
@@ -117,7 +122,7 @@ sudo reboot
 sestatus
 ```
 
-### Instalación de Git
+## Instalación de Git
 
 #### Instalar Git:
 ```bash
@@ -155,8 +160,7 @@ cd monitoreo
 ```bash
 sudo yum update -y
 ```
-
-### Agregar al Dominio
+## Agregar al Dominio
 
 #### Instalar paquetes necesarios:
 ```bash
@@ -218,5 +222,5 @@ su - msosa@Blitzcode.company
 su - kvidir@Blitzcode.company
 ```
 
-Contraseña de Active Directory: `User123`.
+- Contraseña de Active Directory: `User123`.
 
