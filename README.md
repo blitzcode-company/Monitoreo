@@ -133,7 +133,7 @@ sudo yum install -y git
 
 #### Clonar el repositorio:
 ```bash
-git clone git@github.com:blitzcode-company/Monitoreo.git
+git clone https://github.com/blitzcode-company/Monitoreo.git
 ```
 
 #### Cambiar permisos del directorio:
