@@ -1,12 +1,25 @@
 global:
+  resolve_timeout: 5m
   smtp_smarthost: '192.168.1.112:2525'
   smtp_from: 'alertmanager@Blitzcode.com'
 
 route:
-  receiver: 'email'
+  group_wait: 30s
+  group_interval: 30s
+  receiver: 'mail-notifications'
+  routes:
+    - match:
+        severity: 'critical'
+      continue: true
+      receiver: 'mail-notifications'
+    - match:
+        severity: 'warning'
+      continue: true
+      receiver: 'mail-notifications'
 
 receivers:
-  - name: 'email'
+  - name: 'mail-notifications'
     email_configs:
       - to: 'admin@Blitzcode.com'
+        from: 'alertmanager@Blitzcode.com'
         send_resolved: true
