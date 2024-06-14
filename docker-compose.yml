@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   prometheus:
@@ -9,14 +9,12 @@ services:
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./prometheus/alerts.yml:/etc/prometheus/alerts.yml
-      - ./prometheus/prometheus_data:/prometheus
+      - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.retention.time=15d' 
+      - '--storage.tsdb.retention.time=15d'
     restart: unless-stopped
-    networks:
-      - prometheus
 
   grafana:
     image: grafana/grafana
@@ -26,8 +24,6 @@ services:
     volumes:
       - ./grafana-data:/var/lib/grafana
     restart: unless-stopped
-    networks:
-      - prometheus
 
   alertmanager:
     image: prom/alertmanager
@@ -39,12 +35,6 @@ services:
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
     restart: unless-stopped
-    networks:
-      - prometheus
-
-networks:
-  prometheus:
-    driver: bridge
 
 volumes:
   prometheus_data:
