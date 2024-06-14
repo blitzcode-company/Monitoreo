@@ -12,10 +12,10 @@ rule_files:
   - "/etc/prometheus/rules.yml"
 
 scrape_configs:
-  - job_name: 'centos'
+  - job_name: 'node_exporter'
     static_configs:
       - targets: ['192.168.1.110:9100', '192.168.1.107:9100', '192.168.1.112:9100']
 
-  - job_name: 'windows'
+  - job_name: 'windows_exporter'
     static_configs:
       - targets: ['192.168.1.100:9182', '192.168.1.101:9182', '192.168.1.102:9182', '192.168.1.103:9182', '192.168.1.104:9182']
